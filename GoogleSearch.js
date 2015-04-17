@@ -32,7 +32,7 @@ function closeBrowser() {
 	browser.quit();
 }
 
-browser.get('https://www.google.com');
+browser.get('http://zurb.com/ink/inliner.php');
 browser.findElement(webdriver.By.name('q')).sendKeys('tuts+ code');
 browser.findElement(webdriver.By.name('btnG')).click();
 browser.wait(findTutsPlusLink, 2000).then(clickLink).then(logTitle).then(closeBrowser, handleFailure);

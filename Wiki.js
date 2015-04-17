@@ -5,7 +5,7 @@
 "use strict";
 
 var webdriver = require('selenium-webdriver');
-var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'firefox' }).build();
 
 browser.get('http://en.wikipedia.org/wiki/Wiki');
 browser.findElements(webdriver.By.css('[href^="/wiki/"]')).then(function(links){
