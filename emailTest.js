@@ -22,6 +22,8 @@ browser.get('http://zurb.com/ink/inliner.php').
     elements.textBox.sendKeys('test');
     elements.button.click();
 
+    // wait
+    browser.sleep(5000);
     elements.inlineEmail = elements.textBox.getAttribute('value').then(function(value){
       debugger;
       console.log('value')
@@ -31,14 +33,12 @@ browser.get('http://zurb.com/ink/inliner.php').
     return elements;
   }).
   then(function(elements) {
-    console.log(elements.inlineEmail);
-    elements.textBox.sendKeys('test');
+    console.log(elements.inlineEmail)
   }).
   then(function() {
    console.log('Success!');
   }).
   then(function(){
-    browser.sleep(5000);
     browser.close();
   });
 // // go to page
