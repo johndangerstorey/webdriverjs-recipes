@@ -1,30 +1,46 @@
 /*
 * Carry out a email test
 * use https://code.google.com/p/selenium/wiki/WebDriverJs as reference
+
+run node-debug emailTest.js && nodemon emailTest.js and hit play :)
 */
 
 "use strict";
 
 var webdriver = require('selenium-webdriver');
 var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
+var elements = {};
 
 browser.get('http://zurb.com/ink/inliner.php').
   then(function() {
-    return driver.findElement(webdriver.By.name("q"));
-  }).
-  then(function(q) {
-    return q.sendKeys("webdriver");
-  }).
-  then(function() {
-    return driver.findElement(webdriver.By.name("btnG"));
-   }).
-  then(function(btnG) {
-    return btnG.click();
-   }).
-  then(function() {
-    return driver.getTitle();
-  });
 
+    // find elements
+    elements.textBox = browser.findElement(webdriver.By.id("emailSource"));
+    elements.button = browser.findElement(webdriver.By.xpath(".//*[@id='skateForm']/button"));
+
+    // manipulate
+    elements.textBox.sendKeys('test');
+    elements.button.click();
+
+    elements.inlineEmail = elements.textBox.getAttribute('value').then(function(value){
+      debugger;
+      console.log('value')
+    });
+    console.log(elements.inlineEmail.text)
+    debugger;
+    return elements;
+  }).
+  then(function(elements) {
+    console.log(elements.inlineEmail);
+    elements.textBox.sendKeys('test');
+  }).
+  then(function() {
+   console.log('Success!');
+  }).
+  then(function(){
+    browser.sleep(5000);
+    browser.close();
+  });
 // // go to page
 // browser.get('http://zurb.com/ink/inliner.php');
 
